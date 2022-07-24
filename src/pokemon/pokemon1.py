@@ -1,26 +1,34 @@
 from attack import Attack
 
-
+a = 1
+b = 2
     
 print("ברוך הבא למשחק הפוקימון של נועם לוי")
 
-pokemon1 = {"name": "פיקאצ'ו", "hp": 100, "type":"lightning"}
-pokemon2 = {"name": "צ'רמנדר", "hp": 100, "type":"fire"}
+pokemons = [
+    {"name": "פיקאצ'ו", "hp": 100, "type":"lightning"},
+    {"name": "צ'רמנדר", "hp": 100, "type":"fire"},
+    {"name": "סקורתל",  "hp": 150, "type":"water"}
+    ]
+for p in pokemons:
+    print(p)
 
-print("pokemon1:", pokemon1)
-print("pokemon2:", pokemon2)
-
-
+a = input(" בחר פוקמון ")
+b = input(" בחר פוקמון ")
+pokemon1 = pokemons[int(a)-1]
+pokemon2 = pokemons[int(b)-1]
+print("pokemon1", pokemon1)
+print("pokemon2", pokemon2)
 last_attack = ""
 
 attacks = {
-    "ice":      Attack("ice", 10),
-    "fire":     Attack("fire", 15),
-    "shadow":   Attack("shadow",20),
-    "boom":     Attack("boom",25),
-    "lightning": Attack("lightning", 15),
+    "ice":      Attack("ice",   10, "ice"),
+    "fire":     Attack("fire",  15, "fire"),
+    "shadow":   Attack("shadow",20, "shadow"),
+    "boom":     Attack("boom",  25, "fire"),
+    "lightning": Attack("lightning", 15, "lightning"),
+    "water":    Attack ("water", 10, "water"),
 }
-
 print("Attacks:")
 for a in attacks:
     print(a)
@@ -33,7 +41,7 @@ def enter_attack(pokemon):
         last_attack = "";
         return
 
-    selected = input("בחר מתקפה נגד: "+pokemon["name"]+": ")
+    selected = input("בחר מתקפה נגד: "+pokemon["name"]+": ").lower()
     if (selected in attacks):
         pokemon["hp"] = pokemon["hp"] - attacks[selected].get_damage(pokemon)
     else:
