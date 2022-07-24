@@ -15,9 +15,12 @@ class Attack:
     def __repr__(self):
         return str(self)
     
+    def print2(self):
+        str(self)
+    
     def get_damage(self, pokemon):
         result = self.damage
         if (pokemon["type"] == self._type):
-            result = result-5
+            result = result-100
         return result
         
