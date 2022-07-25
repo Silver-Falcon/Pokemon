@@ -1,41 +1,44 @@
 from attack import Attack
+from pprint import pprint
 
-a = 1
-b = 2
+player1 = 1
+player2 = 2
     
 print("ברוך הבא למשחק הפוקימון של נועם לוי")
 
 pokemons = [
-    {"name": "פיקאצ'ו", "hp": 90, "type":"lightning","weak": "dregon"},
-    {"name": "צ'רמנדר", "hp": 85, "type":"fire","weak": "dregon"},
-    {"name": "סקורתל",  "hp": 100, "type":"water","weak": "dregon"},
-    {"name": "גנגר",    "hp": 90, "type":"shadow","weak": "dregon"},
-    {"name": "גרדוס",   "hp": 115, "type":"dragon","weak": "no"},
+    {"name": "פיקאצ'ו", "hp": 90, "type":"lightning","weak": "shadow"},
+    {"name": "צ'רמנדר", "hp": 85, "type":"fire","weak": ""},
+    {"name": "סקורתל",  "hp": 100, "type":"water","weak": ""},
+    {"name": "גנגר",    "hp": 90, "type":"shadow","weak": ""},
+    {"name": "גרדוס",   "hp": 115, "type":"dragon","weak": ""},
     ]
 for p in pokemons:
     print(p)
 
-a = input(" בחר פוקמון")
-b = input(" בחר פוקמון")
-pokemon1 = pokemons[int(a)-1]
-pokemon2 = pokemons[int(b)-1]
+player1 = input(" בחר פוקמון ")
+player2 = input(" בחר פוקמון ")
+pokemon1 = pokemons[int(player1)-1]
+pokemon2 = pokemons[int(player2)-1]
 print("pokemon1", pokemon1)
 print("pokemon2", pokemon2)
+
 last_attack = ""
 
 attacks = {
-    "ice":      Attack("ice",   15, "ice"),
-    "fire":     Attack("fire",  20, "fire"),
-    "shadow":   Attack("shadow",20, "shadow"),
-    "lightning": Attack("lightning", 25, "lightning"),
-    "water":    Attack ("water", 15, "water"),
+    "ice":      Attack("snow",   15, "ice"),
+    "fire":     Attack("fire ball",  20, "fire"),
+    "shadow":   Attack("darkness",20, "shadow"),
+    "spark": Attack("lightning", 25, "lightning"),
+    "Aqua Tail":    Attack ("water", 15, "water"),
     "dragon claw": Attack ("dragon claw", 25, "dragon"),
     "gesr":     Attack ("gesr", 20, "water"),
     "ice bomb": Attack ("ice bomb", 20, "ice"),
 }
+
 print("Attacks:")
-for a in attacks:
-    print(a)
+for item in attacks.values():
+    print(item)
 
 def enter_attack(pokemon):
     global last_attack

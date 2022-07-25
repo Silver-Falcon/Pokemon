@@ -5,14 +5,14 @@ class Attack:
     weak = ""
 
 
-    def __init__(self, name = "שם המתקפה", damage = "כמה נזק היא מורידה",
-                 _type = "סוג", weak = "חולשה"):
+    def __init__(self, name = "", damage = "",
+                 _type = "", weak = ""):
         self.name = name
         self.damage = damage
         self._type = _type
         self.weak = weak
     def __str__(self):
-        return str(vars(self))
+        return self.name+", "+str(self.damage)+", (Type: "+self._type+")"
     
     def __repr__(self):
         return str(self)
