@@ -6,11 +6,11 @@ b = 2
 print("ברוך הבא למשחק הפוקימון של נועם לוי")
 
 pokemons = [
-    {"name": "פיקאצ'ו", "hp": 90, "type":"lightning",weak ="shadow"},
-    {"name": "צ'רמנדר", "hp": 85, "type":"fire",weak = "water"},
-    {"name": "סקורתל",  "hp": 100, "type":"water",weak = "lightning"},
-    {"name": "גנגר",    "hp": 90, "type":"shadow",weak = "fire"},
-    {"name": "גרדוס",   "hp": 115, "type":"dragon",weak = ""},
+    {"name": "פיקאצ'ו", "hp": 90, "type":"lightning","weak": "dregon"},
+    {"name": "צ'רמנדר", "hp": 85, "type":"fire","weak": "dregon"},
+    {"name": "סקורתל",  "hp": 100, "type":"water","weak": "dregon"},
+    {"name": "גנגר",    "hp": 90, "type":"shadow","weak": "dregon"},
+    {"name": "גרדוס",   "hp": 115, "type":"dragon","weak": "no"},
     ]
 for p in pokemons:
     print(p)
@@ -25,12 +25,13 @@ last_attack = ""
 
 attacks = {
     "ice":      Attack("ice",   15, "ice"),
-    "fire":     Attack("fire",  15, "fire"),
+    "fire":     Attack("fire",  20, "fire"),
     "shadow":   Attack("shadow",20, "shadow"),
-    "boom":     Attack("boom",  20, "fire"),
-    "lightning": Attack("lightning", 20, "lightning"),
+    "lightning": Attack("lightning", 25, "lightning"),
     "water":    Attack ("water", 15, "water"),
     "dragon claw": Attack ("dragon claw", 25, "dragon"),
+    "gesr":     Attack ("gesr", 20, "water"),
+    "ice bomb": Attack ("ice bomb", 20, "ice"),
 }
 print("Attacks:")
 for a in attacks:
