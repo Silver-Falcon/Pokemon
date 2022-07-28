@@ -1,20 +1,28 @@
 from attack import Attack
+from pokemon import Pokemon
 from pprint import pprint
+import json
 
 player1 = 1
 player2 = 2
-    
+
 print("ברוך הבא למשחק הפוקימון של נועם לוי")
 
 pokemons = [
-    {"name": "פיקאצ'ו", "hp": 90, "type":"lightning","weak": "shadow"},
-    {"name": "צ'רמנדר", "hp": 85, "type":"fire","weak": ""},
-    {"name": "סקורתל",  "hp": 100, "type":"water","weak": ""},
-    {"name": "גנגר",    "hp": 90, "type":"shadow","weak": ""},
-    {"name": "גרדוס",   "hp": 115, "type":"dragon","weak": ""},
-    ]
+    Pokemon("פיקאצ'ו", 50, "lightning", "shadow",1),
+    Pokemon("צ'רמנדר", 50, "fire",   "water", 2),
+    Pokemon("סקורתל",  50, "water",  "lightning",2),
+    Pokemon("גנגר",    50, "shadow", "fire", 1),
+    Pokemon("גרדוס",   50, "dragon", "levi", 3),
+    Pokemon("noam",    100,"levi",   "",1),
+    Pokemon("dad",     10, "levi",   "",1),
+]
+
+i = 0
 for p in pokemons:
-    print(p)
+    i = i+1
+    print(str(i)+": "+str(p))
+    #print(p.__dict__)
 
 player1 = input(" בחר פוקמון ")
 player2 = input(" בחר פוקמון ")
@@ -23,43 +31,27 @@ pokemon2 = pokemons[int(player2)-1]
 print("pokemon1", pokemon1)
 print("pokemon2", pokemon2)
 
-last_attack = ""
-
 attacks = {
-    "ice":      Attack("snow",   15, "ice"),
-    "fire":     Attack("fire ball",  20, "fire"),
-    "shadow":   Attack("darkness",20, "shadow"),
-    "spark": Attack("lightning", 25, "lightning"),
-    "Aqua Tail":    Attack ("water", 15, "water"),
-    "dragon claw": Attack ("dragon claw", 25, "dragon"),
-    "gesr":     Attack ("gesr", 20, "water"),
-    "ice bomb": Attack ("ice bomb", 20, "ice"),
+    "snow":         Attack("snow",   10, "ice"),
+    "fire ball":    Attack("fire ball",  20, "fire"),
+    "darkness":     Attack("darkness",20, "shadow"),
+    "spark":        Attack("spark", 35, "lightning"),
+    "aqua tail":    Attack("aqua tail", 20, "water"),
+    "dragon claw":  Attack("dragon claw", 25, "dragon"),
+    "gesr":         Attack("gesr", 25, "water"),
+    "ice bomb":     Attack("ice bomb", 25, "ice"),
+    "or":           Attack("or", 50, "levi"),
+    "hp":           Attack("hp", -20, "life")
 }
 
 print("Attacks:")
 for item in attacks.values():
     print(item)
-
-def enter_attack(pokemon):
-    global last_attack
-    
-    if last_attack == "ice":
-        print("!הפוקימון קפוא בגלל התקפת קרח")
-        last_attack = "";
-        return
-
-    selected = input("בחר מתקפה נגד: "+pokemon["name"]+": ").lower()
-    if (selected in attacks):
-        pokemon["hp"] = pokemon["hp"] - attacks[selected].get_damage(pokemon)
-    else:
-        print("התקפה לא קיימת")
-    last_attack = selected
-    print("pokemon: ", pokemon)  
         
-while (pokemon2["hp"] > 0 and pokemon1["hp"] > 0):
-    enter_attack(pokemon1)
-    if (pokemon1["hp"] > 0):
-        enter_attack(pokemon2)
+while (pokemon2.hp > 0 and pokemon1.hp > 0):
+    pokemon2.attack(pokemon1, attacks)
+    if (pokemon1.hp > 0):
+        pokemon1.attack(pokemon2, attacks)
     
 print("!המשחק הסתיים. כל הכבוד")
 
